@@ -1,10 +1,11 @@
 {% extends "blog/base.html" %}
+{% load blog_tags %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
  <h2 class="blog-post-title">{{ post.title }}</h2>
  <p class="date">Опубликовано {{ post.publish }} автором {{ post.author }}</p>
  <hr>
- {{ post.body|linebreaks }}
+ {{ post.body|markdown }}
  
  <p>
     <a href="{% url "blog:post_share" post.id %}">Поделиться публикацией</a>
