@@ -1,7 +1,45 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
- <h1>{{ post.title }}</h1>
+ <h2 class="blog-post-title">{{ post.title }}</h2>
  <p class="date">Опубликовано {{ post.publish }} автором {{ post.author }}</p>
+ <hr>
  {{ post.body|linebreaks }}
+ 
+ <p>
+    <a href="{% url "blog:post_share" post.id %}">Поделиться публикацией</a>
+</p>
+
+<h2>Рекомендуемые посты </h2>
+{% for post in similar_posts %}
+  <p>
+    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+  </p>
+{% empty %}
+  Нет рекомендуемых постов.
+{% endfor %}
+
+{% with comments.count as total_comments %}
+ <h2>{{ total_comments }} comment{{ total_comments|pluralize }}</h2>
+    {% endwith %}
+    {% for comment in comments %}
+ <div class="comment">
+ <p class="info">Комментарий от {{ comment.name }} {{ comment.created }}
+ </p>
+ {{ comment.body|linebreaks }}
+ </div>
+    {% empty %}
+ <p>Тут пока нет комментариев.</p>
+    {% endfor %}
+    {% if new_comment %}
+ <h2>Ваш комментарий добавлен</h2>
+    {% else %}
+ <h2>Добавить новый комментарий</h2>
+    {% endif %}
+ <form action="." method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+ <p><input type="submit" value="Добавить комментарий"></p>
+ </form>
+
 {% endblock %}
