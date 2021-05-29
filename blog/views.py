@@ -55,7 +55,7 @@ def post_share(request, post_id):
                 post_url = request.build_absolute_uri(post.get_absolute_url())
                 subject = '{} ({}) рекомендует посмотреть "{}"'.format(cd['name'], cd['email'], post.title)
                 message = 'Посмотри "{}" на {}\n\n{} прокомментировал:{}'.format(post.title, post_url, cd['name'], cd['comments'])
-                send_mail(subject, message, EMAIL_HOST_USER, [cd['to']])
+                send_mail(subject, message, 'emilkhazioff@yandex.ru', [cd['to']])
                 sent = True
      else:
         form = EmailPostForm()

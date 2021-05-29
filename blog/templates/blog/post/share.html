@@ -2,7 +2,7 @@
 {% block title %}Поделиться постом{% endblock %}
 {% block content %}
  {% if sent %}
- <h1>E-mail успешно отправлял.</h1>
+ <h1>E-mail успешно отправлен.</h1>
  <p>"{{ post.title }}" отправлен {{ form.cleaned_data.to }}.</p>
  {% else %}
  <h1>Поделиться  публикацией "{{ post.title }}"</h1>
