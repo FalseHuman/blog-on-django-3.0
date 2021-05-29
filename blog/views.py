@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from taggit.models import Tag
 from django.db.models import Count
 from django.contrib.postgres.search import TrigramSimilarity
-from django.conf.global_settings import EMAIL_HOST_USER
+
 
 def post_list(request, tag_slug=None):
     object_list = Post.published.all()
