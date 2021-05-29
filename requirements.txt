@@ -7,3 +7,4 @@ whitenoise
 dj-database-url
 gunicorn
 pytz
+send_email
